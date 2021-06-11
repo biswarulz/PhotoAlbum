@@ -16,6 +16,8 @@
 		25825ECF2673B22700B30284 /* PhotoAlbumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25825ECE2673B22700B30284 /* PhotoAlbumUITests.swift */; };
 		25825EE12673B31C00B30284 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25825EE02673B31C00B30284 /* AppCoordinator.swift */; };
 		25825EF12673BCF500B30284 /* AlbumListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25825EF02673BCF500B30284 /* AlbumListView.swift */; };
+		25825EFA2673C1F700B30284 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25825EF92673C1F700B30284 /* Identifiers.swift */; };
+		25825F022673C34700B30284 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25825F012673C34700B30284 /* UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		25825ED02673B22700B30284 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25825EE02673B31C00B30284 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		25825EF02673BCF500B30284 /* AlbumListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListView.swift; sourceTree = "<group>"; };
+		25825EF92673C1F700B30284 /* Identifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
+		25825F012673C34700B30284 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 		25825EAB2673B21F00B30284 /* PhotoAlbum */ = {
 			isa = PBXGroup;
 			children = (
+				25825EF82673C1DC00B30284 /* Helper */,
 				25825EEF2673BC6C00B30284 /* ImageList */,
 				25825EEE2673BC6000B30284 /* AlbumList */,
 				25825EDF2673B2F100B30284 /* Coordinator */,
@@ -153,6 +158,15 @@
 			children = (
 			);
 			path = ImageList;
+			sourceTree = "<group>";
+		};
+		25825EF82673C1DC00B30284 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				25825EF92673C1F700B30284 /* Identifiers.swift */,
+				25825F012673C34700B30284 /* UIView.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,7 +301,9 @@
 				25825EE12673B31C00B30284 /* AppCoordinator.swift in Sources */,
 				25825EB12673B21F00B30284 /* AlbumViewController.swift in Sources */,
 				25825EAD2673B21F00B30284 /* AppDelegate.swift in Sources */,
+				25825F022673C34700B30284 /* UIView.swift in Sources */,
 				25825EAF2673B21F00B30284 /* SceneDelegate.swift in Sources */,
+				25825EFA2673C1F700B30284 /* Identifiers.swift in Sources */,
 				25825EF12673BCF500B30284 /* AlbumListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
