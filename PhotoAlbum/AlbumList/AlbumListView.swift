@@ -15,7 +15,7 @@ class AlbumListView: UIView {
         
         tableView = UITableView()
         
-        
+        super.init(frame: frame)
     }
     
     required init?(coder: NSCoder) {
