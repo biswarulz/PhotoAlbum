@@ -6,16 +6,21 @@
 //
 
 import Foundation
+import Combine
 
 protocol AlbumService {
     
-    func getAlbumList(_ completionHandler: @escaping (Result<[Album], Error>) -> ())
+    func getAlbumList(url: URL) -> AnyPublisher<[Album], Error>
 }
 
 class AlbumServiceClient: AlbumService {
     
-    func getAlbumList(_ completionHandler: @escaping (Result<[Album], Error>) -> ()) {
+    func getAlbumList(url: URL) -> AnyPublisher<[Album], Error> {
         
+        URLSession.shared.dataTaskPublisher(for: url)
+            .compactMap { $0.data }
+            .decode(type: [Album].self, decoder: JSONDecoder())
+            .mapError{ $0 as Error }
+            .eraseToAnyPublisher()
     }
-    
 }

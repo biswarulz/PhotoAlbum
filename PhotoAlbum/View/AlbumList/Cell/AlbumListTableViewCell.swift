@@ -18,10 +18,21 @@ class AlbumListTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         serialNoLabel = UILabel()
+        serialNoLabel.textColor = .white
+        serialNoLabel.backgroundColor = .blue
+        serialNoLabel.layer.cornerRadius = 30.0/2
+        serialNoLabel.clipsToBounds = true
+        serialNoLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .bold)
+        serialNoLabel.textAlignment = .center
         
         albumTextlabel = UILabel()
+        albumTextlabel.textColor = .blue
+        albumTextlabel.font = UIFont.systemFont(ofSize: 18.0)
+        albumTextlabel.numberOfLines = 2
         
         wrapperView = UIView()
+        wrapperView.backgroundColor = .lightGray
+        wrapperView.layer.cornerRadius = 10.0
         wrapperView.addSubViewsForAutoLayout([serialNoLabel, albumTextlabel])
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,6 +47,8 @@ class AlbumListTableViewCell: UITableViewCell {
     
     func fillData(_ data: AlbumListCellViewData) {
         
+        serialNoLabel.text = data.serialNo
+        albumTextlabel.text = data.title
     }
     
     private func addCustomConstraints() {

@@ -9,7 +9,7 @@ import UIKit
 
 protocol AlbumListDisplayLogic: AnyObject {
     
-    func displayAlbumList()
+    func displayAlbumList(withTitle titleText: String, data: [AlbumListCellViewData])
 }
 
 protocol AlbumListCoordinatorDelegate: AnyObject {
@@ -43,11 +43,18 @@ class AlbumViewController: UIViewController {
         // Do any additional setup after loading the view.
         sceneView.tableView.dataSource = albumListDataSource
         sceneView.tableView.delegate = self
+        
+        tryGettingAlbumList()
     }
     
     override func loadView() {
         
         view = sceneView
+    }
+    
+    private func tryGettingAlbumList() {
+        
+        albumListViewModel?.fetchAlbumList()
     }
 
 }
@@ -56,6 +63,21 @@ extension AlbumViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        return 74.0
+    }
+}
+
+extension AlbumViewController: AlbumListDisplayLogic {
+    
+    func displayAlbumList(withTitle titleText: String, data: [AlbumListCellViewData]) {
+        
+        albumListDataSource?.cellViewData = data
+        sceneView.tableView.reloadData()
+        title = titleText
     }
 }
 

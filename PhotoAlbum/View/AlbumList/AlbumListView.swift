@@ -14,7 +14,7 @@ class AlbumListView: UIView {
     /// constant values used
     private struct ViewTraits {
         
-        static let estimatedRowHeight: CGFloat = 44.0
+        static let estimatedRowHeight: CGFloat = 74.0
     }
     
     override init(frame: CGRect) {
@@ -24,6 +24,7 @@ class AlbumListView: UIView {
         tableView.register(AlbumListTableViewCell.self, forCellReuseIdentifier: AlbumListTableViewCell.cellIdentifier)
         tableView.estimatedRowHeight = ViewTraits.estimatedRowHeight
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
         
         super.init(frame: frame)
         

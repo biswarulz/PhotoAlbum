@@ -9,7 +9,7 @@ import UIKit
 
 class AlbumListDataSource: NSObject {
     
-    let cellViewData: [AlbumListCellViewData]
+    var cellViewData: [AlbumListCellViewData]
     
     init(cellViewData: [AlbumListCellViewData]) {
         
