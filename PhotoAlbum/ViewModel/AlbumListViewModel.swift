@@ -11,6 +11,7 @@ import Combine
 protocol AlbumListBusinessLogic: AnyObject {
     
     func fetchAlbumList()
+    func fetchSearchedAlbumList(forText text: String)
 }
 
 class AlbumListViewModel {
@@ -46,6 +47,18 @@ extension AlbumListViewModel: AlbumListBusinessLogic {
             self.presentAlbumList(albums)
         }.store(in: &cancellableSubscribers)
 
+    }
+    
+    func fetchSearchedAlbumList(forText text: String) {
+        
+        guard !text.isEmpty else {
+            
+            presentAlbumList(albumList)
+            return
+        }
+        
+        let filteredList = albumList.filter({ $0.title.lowercased().contains(text) })
+        presentAlbumList(filteredList)
     }
 }
 

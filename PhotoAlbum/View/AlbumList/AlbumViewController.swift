@@ -43,6 +43,7 @@ class AlbumViewController: UIViewController {
         // Do any additional setup after loading the view.
         sceneView.tableView.dataSource = albumListDataSource
         sceneView.tableView.delegate = self
+        setupSearchField()
         
         tryGettingAlbumList()
     }
@@ -50,6 +51,17 @@ class AlbumViewController: UIViewController {
     override func loadView() {
         
         view = sceneView
+    }
+    
+    private func setupSearchField() {
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Album"
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
     }
     
     private func tryGettingAlbumList() {
@@ -80,4 +92,20 @@ extension AlbumViewController: AlbumListDisplayLogic {
         title = titleText
     }
 }
+
+// MARK: - Search Result delegate
+
+extension AlbumViewController: UISearchResultsUpdating {
+    
+    /// Gets called when typing in the search textfield
+    /// - Parameter searchController: search controller
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        if let text = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+            
+            albumListViewModel?.fetchSearchedAlbumList(forText: text.lowercased())
+        }
+    }
+}
+
 
