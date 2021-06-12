@@ -30,7 +30,7 @@ struct Album: Decodable {
 
 struct AlbumContext {
     
-    let albumId: Int?
+    let albumId: Int
 }
 
 struct AlbumListCellViewData {

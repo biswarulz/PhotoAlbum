@@ -6,21 +6,29 @@
 //
 
 import Foundation
-import Combine
+import Alamofire
 
 protocol AlbumService {
     
-    func getAlbumList(url: URL) -> AnyPublisher<[Album], Error>
+    func getAlbumList(_ completionHandler: @escaping (Result<[Album], Error>) -> ())
 }
 
 class AlbumServiceClient: AlbumService {
     
-    func getAlbumList(url: URL) -> AnyPublisher<[Album], Error> {
+    func getAlbumList(_ completionHandler: @escaping (Result<[Album], Error>) -> ()) {
         
-        URLSession.shared.dataTaskPublisher(for: url)
-            .compactMap { $0.data }
-            .decode(type: [Album].self, decoder: JSONDecoder())
-            .mapError{ $0 as Error }
-            .eraseToAnyPublisher()
+        AF.request(Identifiers.albumNetworkURL)
+            {$0.timeoutInterval = Identifiers.requestTimeoutInterval}.validate()
+            .responseDecodable(of: [Album].self) { (response) in
+            
+            if let error = response.error {
+                
+                completionHandler(.failure(error))
+            } else {
+                
+                let albums = response.value ?? []
+                completionHandler(.success(albums))
+            }
+        }
     }
 }

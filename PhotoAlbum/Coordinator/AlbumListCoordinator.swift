@@ -38,11 +38,17 @@ class AlbumListCoordinator: Coordinator<Void> {
     }
     
     private func setUpNavigationBar() {
-        self.navigationController.navigationBar.prefersLargeTitles = true
-        self.navigationController.navigationBar.largeTitleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
-             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 30)]
-        self.navigationController.navigationBar.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        
+        navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.navigationBar.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 30)]
+        navBarAppearance.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        navigationController.navigationBar.standardAppearance = navBarAppearance
+        navigationController.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
 }
 
@@ -50,5 +56,8 @@ extension AlbumListCoordinator: AlbumListCoordinatorDelegate {
     
     func didSelectOnAlbumList(_ context: AlbumContext) {
         
+        let imageListCoordinator = ImageListCoordinator(albumContext: context, navigationController: navigationController)
+        imageListCoordinator.start()
+        addChildCoordinator(imageListCoordinator)
     }
 }

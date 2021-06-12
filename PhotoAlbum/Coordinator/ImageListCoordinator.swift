@@ -11,12 +11,13 @@ class ImageListCoordinator: Coordinator<Void> {
     
     private var navigationController: UINavigationController
     private var viewController: ImageListViewController
+    private let albumContext: AlbumContext
     
-    init(navigationController: UINavigationController) {
+    init(albumContext: AlbumContext, navigationController: UINavigationController) {
         
         self.navigationController = navigationController
         viewController = ImageListViewController(imageListDataSource: ImageListDataSource(cellViewData: []))
-
+        self.albumContext = albumContext
         super.init()
         setUp()
     }
@@ -24,9 +25,17 @@ class ImageListCoordinator: Coordinator<Void> {
     private func setUp() {
         
         let service: ImageService = ImageServiceClient()
-        let viewModel = ImageListViewModel(imageService: service)
+        let viewModel = ImageListViewModel(imageService: service, albumContext: albumContext)
         viewModel.viewController = viewController
         viewController.imageListViewModel = viewModel
+
+    }
+    
+    override func start() {
+        
+        super.start()
+        viewController.imageListCoordinatorDelegate = self
+        navigationController.pushViewController(viewController, animated: true)
     }
 }
 

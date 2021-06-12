@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 protocol AlbumListBusinessLogic: AnyObject {
     
@@ -19,7 +18,6 @@ class AlbumListViewModel {
     let albumService: AlbumService
     weak var viewController: AlbumListDisplayLogic?
     private var albumList: [Album] = []
-    private var cancellableSubscribers = Set<AnyCancellable>()
     
     init(albumService: AlbumService) {
         
@@ -30,22 +28,17 @@ class AlbumListViewModel {
 extension AlbumListViewModel: AlbumListBusinessLogic {
     
     func fetchAlbumList() {
-        
-        guard let url = URL(string: Identifiers.albumNetworkURL) else { return }
-        
-        albumService.getAlbumList(url: url)
-            .receive(on: DispatchQueue.main).sink { (completion) in
-            switch completion {
-            case .finished:
-                break
+                
+        albumService.getAlbumList { (result) in
+            
+            switch result {
+            case .success(let albumList):
+                self.albumList = albumList
+                self.presentAlbumList(albumList)
             case .failure(let error):
                 print(error)
             }
-        } receiveValue: { (albums) in
-            
-            self.albumList = albums
-            self.presentAlbumList(albums)
-        }.store(in: &cancellableSubscribers)
+        }
 
     }
     

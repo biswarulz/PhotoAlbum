@@ -6,21 +6,34 @@
 //
 
 import Foundation
-import Combine
+import Alamofire
 
 protocol ImageService {
     
-    func getImageList(url: URL) -> AnyPublisher<[Photo], Error>
+    func getImageListForSpecificAlbum(_ albumId: Int, completionHandler: @escaping (Result<[Photo], Error>) -> ())
 }
 
 class ImageServiceClient: ImageService {
     
-    func getImageList(url: URL) -> AnyPublisher<[Photo], Error> {
+    /// Get all photo details for a specific album
+    /// - Parameters:
+    ///   - albumId: album id to be passed
+    ///   - completionHandler: completion handler containing success and failure data
+    func getImageListForSpecificAlbum(_ albumId: Int, completionHandler: @escaping (Result<[Photo], Error>) -> ()) {
         
-        URLSession.shared.dataTaskPublisher(for: url)
-            .compactMap { $0.data }
-            .decode(type: [Photo].self, decoder: JSONDecoder())
-            .mapError{ $0 as Error }
-            .eraseToAnyPublisher()
+        let parameters: [String: Int] = ["albumId": albumId]
+        AF.request(Identifiers.photoNetworkURL, parameters: parameters)
+            {$0.timeoutInterval = Identifiers.requestTimeoutInterval}.validate()
+            .responseDecodable(of: [Photo].self) { (response) in
+            
+            if let error = response.error {
+                
+                completionHandler(.failure(error))
+            } else {
+                
+                let photos = response.value ?? []
+                completionHandler(.success(photos))
+            }
+        }
     }
 }

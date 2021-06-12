@@ -45,7 +45,7 @@ class ImageListView: GenericView {
         
         NSLayoutConstraint.activate([
             
-            imageListCollectionView.topAnchor.constraint(equalTo: topAnchor),
+            imageListCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             imageListCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageListCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             imageListCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)

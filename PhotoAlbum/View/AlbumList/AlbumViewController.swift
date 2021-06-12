@@ -77,7 +77,7 @@ extension AlbumViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let album = albumListDataSource?.cellViewData[indexPath.row]
-        let context = AlbumContext(albumId: album?.albumId)
+        let context = AlbumContext(albumId: album?.albumId ?? 0)
         albumListCoordinatorDelegate?.didSelectOnAlbumList(context)
     }
     

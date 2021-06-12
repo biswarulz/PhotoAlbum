@@ -11,4 +11,8 @@ struct Identifiers {
     
     static let photoNetworkURL = "https://jsonplaceholder.typicode.com/photos"
     static let albumNetworkURL = "https://jsonplaceholder.typicode.com/albums"
+    
+    static let placeHolderImage = "placeholder"
+    
+    static let requestTimeoutInterval = 30.0
 }
