@@ -18,6 +18,12 @@
 		25825EF12673BCF500B30284 /* AlbumListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25825EF02673BCF500B30284 /* AlbumListView.swift */; };
 		25825EFA2673C1F700B30284 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25825EF92673C1F700B30284 /* Identifiers.swift */; };
 		25825F022673C34700B30284 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25825F012673C34700B30284 /* UIView.swift */; };
+		25A4AADA26749B1D000552F6 /* AlbumListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A4AAD926749B1D000552F6 /* AlbumListCoordinator.swift */; };
+		25A4AAE026749CB5000552F6 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A4AADF26749CB5000552F6 /* AlbumService.swift */; };
+		25A4AAE926749DDF000552F6 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A4AAE826749DDF000552F6 /* Album.swift */; };
+		25A4AAEE26749E38000552F6 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A4AAED26749E38000552F6 /* Photo.swift */; };
+		25A4AAF626749FAB000552F6 /* AlbumListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A4AAF526749FAB000552F6 /* AlbumListViewModel.swift */; };
+		25A4AAFC2674A1B8000552F6 /* AlbumListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A4AAFB2674A1B8000552F6 /* AlbumListDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +61,12 @@
 		25825EF02673BCF500B30284 /* AlbumListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListView.swift; sourceTree = "<group>"; };
 		25825EF92673C1F700B30284 /* Identifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
 		25825F012673C34700B30284 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		25A4AAD926749B1D000552F6 /* AlbumListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListCoordinator.swift; sourceTree = "<group>"; };
+		25A4AADF26749CB5000552F6 /* AlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumService.swift; sourceTree = "<group>"; };
+		25A4AAE826749DDF000552F6 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		25A4AAED26749E38000552F6 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		25A4AAF526749FAB000552F6 /* AlbumListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewModel.swift; sourceTree = "<group>"; };
+		25A4AAFB2674A1B8000552F6 /* AlbumListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,9 +117,12 @@
 		25825EAB2673B21F00B30284 /* PhotoAlbum */ = {
 			isa = PBXGroup;
 			children = (
+				25A4AAFA2674A19D000552F6 /* DataSource */,
+				25A4AAF426749F8E000552F6 /* ViewModel */,
+				25A4AAF326749F5F000552F6 /* View */,
+				25A4AAE726749D8B000552F6 /* Model */,
+				25A4AADE26749BDE000552F6 /* NetworkService */,
 				25825EF82673C1DC00B30284 /* Helper */,
-				25825EEF2673BC6C00B30284 /* ImageList */,
-				25825EEE2673BC6000B30284 /* AlbumList */,
 				25825EDF2673B2F100B30284 /* Coordinator */,
 				25825EAC2673B21F00B30284 /* AppDelegate.swift */,
 				25825EAE2673B21F00B30284 /* SceneDelegate.swift */,
@@ -140,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				25825EE02673B31C00B30284 /* AppCoordinator.swift */,
+				25A4AAD926749B1D000552F6 /* AlbumListCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -167,6 +183,48 @@
 				25825F012673C34700B30284 /* UIView.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		25A4AADE26749BDE000552F6 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				25A4AADF26749CB5000552F6 /* AlbumService.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		25A4AAE726749D8B000552F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				25A4AAE826749DDF000552F6 /* Album.swift */,
+				25A4AAED26749E38000552F6 /* Photo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		25A4AAF326749F5F000552F6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25825EEF2673BC6C00B30284 /* ImageList */,
+				25825EEE2673BC6000B30284 /* AlbumList */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25A4AAF426749F8E000552F6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				25A4AAF526749FAB000552F6 /* AlbumListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		25A4AAFA2674A19D000552F6 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				25A4AAFB2674A1B8000552F6 /* AlbumListDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,8 +361,14 @@
 				25825EAD2673B21F00B30284 /* AppDelegate.swift in Sources */,
 				25825F022673C34700B30284 /* UIView.swift in Sources */,
 				25825EAF2673B21F00B30284 /* SceneDelegate.swift in Sources */,
+				25A4AAE026749CB5000552F6 /* AlbumService.swift in Sources */,
 				25825EFA2673C1F700B30284 /* Identifiers.swift in Sources */,
+				25A4AAEE26749E38000552F6 /* Photo.swift in Sources */,
+				25A4AAFC2674A1B8000552F6 /* AlbumListDataSource.swift in Sources */,
+				25A4AAF626749FAB000552F6 /* AlbumListViewModel.swift in Sources */,
+				25A4AADA26749B1D000552F6 /* AlbumListCoordinator.swift in Sources */,
 				25825EF12673BCF500B30284 /* AlbumListView.swift in Sources */,
+				25A4AAE926749DDF000552F6 /* Album.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -44,21 +44,20 @@ class Coordinator<CoordinationResult> {
 class AppCoordinator: Coordinator<Void> {
     
     var window: UIWindow?
-    
-    lazy var rootViewController: UINavigationController = {
-        
-        return UINavigationController(rootViewController: AlbumViewController())
-    }()
+    var navigationController: UINavigationController
     
     init(window: UIWindowScene) {
         
         self.window = UIWindow(windowScene: window)
+        navigationController = UINavigationController()
+        self.window?.rootViewController = navigationController
     }
     
     override func start() {
         
-        guard let window = window else { return }
-        window.rootViewController = rootViewController
-        window.makeKeyAndVisible()
+        let albumListCoordinator = AlbumListCoordinator(navigationController: navigationController)
+        albumListCoordinator.start()
+        addChildCoordinator(albumListCoordinator)
+        window?.makeKeyAndVisible()
     }
 }
