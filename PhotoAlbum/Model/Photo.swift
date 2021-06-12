@@ -31,3 +31,10 @@ struct Photo: Decodable {
         thumbnailUrl = try container.decodeIfPresent(String.self, forKey: .thumbnailUrl) ?? ""
     }
 }
+
+struct ImageListCellViewData {
+    
+    let title: String
+    let imageUrl: String
+    let thumbnailUrl: String
+}

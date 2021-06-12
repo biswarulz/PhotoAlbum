@@ -19,14 +19,14 @@ class AlbumListTableViewCell: UITableViewCell {
         
         serialNoLabel = UILabel()
         serialNoLabel.textColor = .white
-        serialNoLabel.backgroundColor = .blue
+        serialNoLabel.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         serialNoLabel.layer.cornerRadius = 30.0/2
         serialNoLabel.clipsToBounds = true
         serialNoLabel.font = UIFont.systemFont(ofSize: 12.0, weight: .bold)
         serialNoLabel.textAlignment = .center
         
         albumTextlabel = UILabel()
-        albumTextlabel.textColor = .blue
+        albumTextlabel.textColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         albumTextlabel.font = UIFont.systemFont(ofSize: 18.0)
         albumTextlabel.numberOfLines = 2
         

@@ -19,6 +19,7 @@ class AlbumListCoordinator: Coordinator<Void> {
 
         super.init()
         setUp()
+        setUpNavigationBar()
     }
     
     private func setUp() {
@@ -34,6 +35,14 @@ class AlbumListCoordinator: Coordinator<Void> {
         
         viewController.albumListCoordinatorDelegate = self
         navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    private func setUpNavigationBar() {
+        self.navigationController.navigationBar.prefersLargeTitles = true
+        self.navigationController.navigationBar.largeTitleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 30)]
+        self.navigationController.navigationBar.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
     }
 }
 

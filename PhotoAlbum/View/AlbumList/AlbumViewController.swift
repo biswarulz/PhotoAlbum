@@ -66,6 +66,7 @@ class AlbumViewController: UIViewController {
     
     private func tryGettingAlbumList() {
         
+        sceneView.showSpinner()
         albumListViewModel?.fetchAlbumList()
     }
 
@@ -75,6 +76,9 @@ extension AlbumViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let album = albumListDataSource?.cellViewData[indexPath.row]
+        let context = AlbumContext(albumId: album?.albumId)
+        albumListCoordinatorDelegate?.didSelectOnAlbumList(context)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -87,6 +91,7 @@ extension AlbumViewController: AlbumListDisplayLogic {
     
     func displayAlbumList(withTitle titleText: String, data: [AlbumListCellViewData]) {
         
+        sceneView.hideSpinner()
         albumListDataSource?.cellViewData = data
         sceneView.tableView.reloadData()
         title = titleText

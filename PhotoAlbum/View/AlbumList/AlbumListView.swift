@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AlbumListView: UIView {
+class AlbumListView: GenericView {
     
     let tableView: UITableView
     
