@@ -41,6 +41,8 @@ class AlbumViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        sceneView.tableView.dataSource = albumListDataSource
+        sceneView.tableView.delegate = self
     }
     
     override func loadView() {
@@ -48,5 +50,12 @@ class AlbumViewController: UIViewController {
         view = sceneView
     }
 
+}
+
+extension AlbumViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }
 

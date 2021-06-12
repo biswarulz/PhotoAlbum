@@ -10,7 +10,6 @@ import UIKit
 class AlbumListView: UIView {
     
     let tableView: UITableView
-    static let cellIdentifier = "AlbumListCell"
     
     /// constant values used
     private struct ViewTraits {
@@ -22,7 +21,7 @@ class AlbumListView: UIView {
         
         tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: AlbumListView.cellIdentifier)
+        tableView.register(AlbumListTableViewCell.self, forCellReuseIdentifier: AlbumListTableViewCell.cellIdentifier)
         tableView.estimatedRowHeight = ViewTraits.estimatedRowHeight
         tableView.rowHeight = UITableView.automaticDimension
         

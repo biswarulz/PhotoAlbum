@@ -15,7 +15,7 @@ class AlbumListCoordinator: Coordinator<Void> {
     init(navigationController: UINavigationController) {
         
         self.navigationController = navigationController
-        viewController = AlbumViewController(albumListDataSource: AlbumListDataSource())
+        viewController = AlbumViewController(albumListDataSource: AlbumListDataSource(cellViewData: []))
 
         super.init()
         setUp()

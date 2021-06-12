@@ -33,3 +33,10 @@ struct AlbumContext {
     let albumId: Int
 }
 
+struct AlbumListCellViewData {
+    
+    let albumId: Int
+    let title: String
+    let serialNo: String
+}
+
