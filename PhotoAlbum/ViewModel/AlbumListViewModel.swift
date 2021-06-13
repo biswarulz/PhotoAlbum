@@ -62,7 +62,7 @@ extension AlbumListViewModel {
     
     private func presentAlbumList(_ albums: [Album]) {
         
-       let viewData = albums.enumerated().map({ AlbumListCellViewData(albumId: $1.albumId, title: $1.title, serialNo: "\($0 + 1)") })
+        let viewData = albums.map({ AlbumListCellViewData(albumId: $0.albumId, title: $0.title, serialNo: "\($0.albumId)") })
         viewController?.displayAlbumList(withTitle: "Albums", data: viewData)
     }
     
