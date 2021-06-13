@@ -30,6 +30,15 @@ struct Photo: Decodable {
         url = try container.decodeIfPresent(String.self, forKey: .url) ?? ""
         thumbnailUrl = try container.decodeIfPresent(String.self, forKey: .thumbnailUrl) ?? ""
     }
+    
+    init(albumId: Int = 0, photoId: Int = 0, title: String = "", url: String = "", thumbnailUrl: String = "") {
+        
+        self.albumId = albumId
+        self.photoId = photoId
+        self.title = title
+        self.url = url
+        self.thumbnailUrl = thumbnailUrl
+    }
 }
 
 struct ImageListCellViewData {

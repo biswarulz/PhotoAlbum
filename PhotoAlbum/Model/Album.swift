@@ -26,6 +26,13 @@ struct Album: Decodable {
         albumId = try container.decodeIfPresent(Int.self, forKey: .albumId) ?? 0
         title = try container.decodeIfPresent(String.self, forKey: .title) ?? ""
     }
+    
+    init(userId: Int = 0, albumId: Int = 0, title: String = "") {
+        
+        self.userId = userId
+        self.albumId = albumId
+        self.title = title
+    }
 }
 
 struct AlbumContext {
