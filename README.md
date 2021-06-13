@@ -1,11 +1,12 @@
 # PhotoAlbum
-Retrieves all album list and shows images corresponding to the selected Album. Implemented in MVVM with coordinator pattern architecture.
+I have named this application as PhotoAlbum. As per the requirement it retrieves all album list and shows images corresponding to the selected Album. Implemented in MVVM with coordinator pattern architecture. Added main app coordinator with child coordinators for managing app flows and navigation with using dependency injection.
 
 This has two screens basically. Album List and Image List
 
 # Album List
 
-This screen is the landing page after launching the app. Once loaded it will fetch all album list by calling the API service.
+- This screen is the landing page after launching the app. Once loaded it will fetch all album list by calling the API service.
+- Added search bar to search the albums based on text
 
 https://jsonplaceholder.typicode.com/albums
 
