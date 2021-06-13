@@ -41,5 +41,9 @@ class ImageListCoordinator: Coordinator<Void> {
 
 extension ImageListCoordinator: ImageListCoordinatorDelegate {
     
+    func viewDidRemove() {
+        
+        finish(())
+    }
 }
 

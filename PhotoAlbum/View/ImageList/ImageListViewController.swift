@@ -9,12 +9,13 @@ import UIKit
 
 protocol ImageListCoordinatorDelegate: AnyObject {
     
-    
+    func viewDidRemove()
 }
 
 protocol ImageListDisplayLogic: AnyObject {
     
     func displayImageList(forTitle titleText: String, viewData: [ImageListCellViewData])
+    func displayServerError()
 }
 
 class ImageListViewController: UIViewController {
@@ -31,7 +32,7 @@ class ImageListViewController: UIViewController {
     /// constant values used
     private struct ViewTraits {
         
-        static let numberOfCellInARow: CGFloat = 3
+        static let numberOfCellInARow: CGFloat = 2.4
         static let horizontalSpacingBetweenCell: CGFloat = 2 * 2
     }
     
@@ -60,6 +61,11 @@ class ImageListViewController: UIViewController {
         view = sceneView
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        imageListCoordinatorDelegate?.viewDidRemove()
+    }
+    
     private func tryFetchingImageList() {
         
         sceneView.showSpinner()
@@ -77,13 +83,21 @@ extension ImageListViewController: ImageListDisplayLogic {
         title = titleText
         sceneView.imageListCollectionView.reloadData()
     }
+    
+    /// Displays server error
+    func displayServerError() {
+        
+        sceneView.hideSpinner()
+        let alert = UIAlertController(title: Identifiers.errorTitle, message: Identifiers.errorDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Identifiers.okTitle, style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 extension ImageListViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let cellWidth = (sceneView.imageListCollectionView.frame.size.width / ViewTraits.numberOfCellInARow) - ViewTraits.horizontalSpacingBetweenCell
-        return CGSize(width: cellWidth, height: sceneView.imageListCollectionView.frame.size.width / CGFloat(ViewTraits.numberOfCellInARow))
+        return CGSize(width: sceneView.imageListCollectionView.frame.size.width, height: sceneView.imageListCollectionView.frame.size.height / CGFloat(ViewTraits.numberOfCellInARow))
     }
 }

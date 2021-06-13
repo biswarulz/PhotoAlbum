@@ -10,6 +10,7 @@ import UIKit
 protocol AlbumListDisplayLogic: AnyObject {
     
     func displayAlbumList(withTitle titleText: String, data: [AlbumListCellViewData])
+    func displayServerError()
 }
 
 protocol AlbumListCoordinatorDelegate: AnyObject {
@@ -95,6 +96,15 @@ extension AlbumViewController: AlbumListDisplayLogic {
         albumListDataSource?.cellViewData = data
         sceneView.tableView.reloadData()
         title = titleText
+    }
+    
+    /// Displays server error
+    func displayServerError() {
+        
+        sceneView.hideSpinner()
+        let alert = UIAlertController(title: Identifiers.errorTitle, message: Identifiers.errorDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Identifiers.okTitle, style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

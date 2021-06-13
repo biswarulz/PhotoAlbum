@@ -27,6 +27,7 @@ class AlbumListViewModel {
 
 extension AlbumListViewModel: AlbumListBusinessLogic {
     
+    /// Fetches full album list
     func fetchAlbumList() {
                 
         albumService.getAlbumList { (result) in
@@ -35,13 +36,15 @@ extension AlbumListViewModel: AlbumListBusinessLogic {
             case .success(let albumList):
                 self.albumList = albumList
                 self.presentAlbumList(albumList)
-            case .failure(let error):
-                print(error)
+            case .failure(_):
+                self.presentServerError()
             }
         }
 
     }
     
+    /// Fetches searched result based on the text
+    /// - Parameter text: searched text
     func fetchSearchedAlbumList(forText text: String) {
         
         guard !text.isEmpty else {
@@ -61,5 +64,10 @@ extension AlbumListViewModel {
         
        let viewData = albums.enumerated().map({ AlbumListCellViewData(albumId: $1.albumId, title: $1.title, serialNo: "\($0 + 1)") })
         viewController?.displayAlbumList(withTitle: "Albums", data: viewData)
+    }
+    
+    private func presentServerError() {
+        
+        viewController?.displayServerError()
     }
 }

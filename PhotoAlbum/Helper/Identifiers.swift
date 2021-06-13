@@ -15,4 +15,8 @@ struct Identifiers {
     static let placeHolderImage = "placeholder"
     
     static let requestTimeoutInterval = 30.0
+    
+    static let errorTitle = "Server Error!"
+    static let errorDescription = "Sorry for the inconvinience. There is some error fetching fresh data from the server"
+    static let okTitle = "Ok"
 }

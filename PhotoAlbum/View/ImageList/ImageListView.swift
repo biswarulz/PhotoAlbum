@@ -14,8 +14,8 @@ class ImageListView: GenericView {
     /// constant values used
     private struct ViewTraits {
         
-        static let minimumInteritemSpacing: CGFloat = 1.0
-        static let minimumLineSpacing: CGFloat = 1.0
+        static let minimumInteritemSpacing: CGFloat = 0.0
+        static let minimumLineSpacing: CGFloat = 0.0
     }
     
     override init(frame: CGRect) {
@@ -25,15 +25,14 @@ class ImageListView: GenericView {
         collectionViewLayout.minimumLineSpacing = ViewTraits.minimumLineSpacing
         collectionViewLayout.scrollDirection = .vertical
         imageListCollectionView = UICollectionView(frame: frame, collectionViewLayout: collectionViewLayout)
-        imageListCollectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        //imageListCollectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         imageListCollectionView.backgroundColor = .systemBackground
-        imageListCollectionView.translatesAutoresizingMaskIntoConstraints = false
         imageListCollectionView.register(ImageListCollectionViewCell.self, forCellWithReuseIdentifier: ImageListCollectionViewCell.cellIdentifier)
         imageListCollectionView.showsVerticalScrollIndicator = false
         
         super.init(frame: frame)
         
-        addSubview(imageListCollectionView)
+        addSubViewsForAutoLayout([imageListCollectionView])
         addCustomConstraints()
     }
     
